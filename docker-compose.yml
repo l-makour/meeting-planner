@@ -1,0 +1,21 @@
+version: '2'
+services:
+  back:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: meeting-planner
+    container_name: meeting-planner
+    environment:
+      - SPRING_PROFILES_ACTIVE=int
+    links:
+      - "postgres:postgres"
+    ports:
+      - "8080:8080"
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+    - POSTGRES_PASSWORD=root
